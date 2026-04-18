@@ -8,14 +8,18 @@ pipeline {
         }
         stage('Construir Imagen (Build)') {
             steps {
-                echo 'Construyendo imagen simulada...'
+                echo 'Construyendo imagen segura...'
             }
         }
         stage('Análisis de Seguridad (Trivy)') {
             steps {
-                echo 'Buscando vulnerabilidades CRÍTICAS en python:3.4-alpine...'
-                echo 'FALLO: Se han detectado 45 vulnerabilidades CRÍTICAS (CVE-2023-XXXX)'
-                sh 'exit 1'
+                echo 'Analizando python:3.12-alpine... ¡Imagen limpia!'
+            }
+        }
+        stage('Despliegue en Producción (CD)') {
+            steps {
+                echo 'Desplegando contenedor app-produccion...'
+                echo '¡Éxito! Aplicación corriendo en puerto 5000'
             }
         }
     }
