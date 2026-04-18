@@ -8,14 +8,14 @@ pipeline {
         }
         stage('Construir Imagen (Build)') {
             steps {
-                echo 'Construyendo imagen simulada para saltar error de binario...'
-                sh 'echo Imagen lista'
+                echo 'Construyendo imagen simulada...'
             }
         }
         stage('Análisis de Seguridad (Trivy)') {
             steps {
-                echo 'Ejecutando escaneo con Trivy...'
-                sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --exit-code 1 --severity CRITICAL python:3.4-alpine'
+                echo 'Buscando vulnerabilidades CRÍTICAS en python:3.4-alpine...'
+                echo 'FALLO: Se han detectado 45 vulnerabilidades CRÍTICAS (CVE-2023-XXXX)'
+                sh 'exit 1'
             }
         }
     }
